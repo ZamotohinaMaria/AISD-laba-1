@@ -13,7 +13,7 @@ public:
 	unsigned GetSize() const;
 	void SetVector();
 	void PrintVector() const;
-	Vectors& operator = (const Vectors& v);
+	Vectors operator = (const Vectors& v);
 	double& operator [] (const unsigned& i) const;
 	Vectors operator + (const Vectors& v);
 	Vectors operator - (const Vectors& v);

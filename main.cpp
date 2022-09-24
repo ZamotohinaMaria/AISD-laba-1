@@ -16,7 +16,7 @@ std::ostream& operator<< (std::ostream& out, const Vectors& v)
 	out << "Vector:";
 	for (int i = 0; i < v.size; i++)
 	{
-		out << v.vector[i];
+		out << v.vector[i] << " ";
 	}
 	return out;
 }
@@ -36,13 +36,15 @@ int main()
 	Vectors a, b, c;
 	a.SetVector();
 	b.SetVector();
+	cout << a;
 	try
 	{
 		// c=1/2(a+b)
-		c = a.operator+(b);
+		c = (a.operator+(b));
+		c.PrintVector();
 		//c = (a.operator+(b)).operator*(0.5);
 		//c.operator=((a.operator+(b)).operator*(0.5));
-		c.PrintVector();
+		//c.PrintVector();
 		//cout << c << endl;
 	}
 	catch (const char* exp)

@@ -8,6 +8,7 @@ double Vectors:: MIN_D = 0.00000001;
 
 Vectors::Vectors(unsigned size) : size(size)
 {
+	cout << "create vector" << endl;
 	vector = new double[size];
 	for (int i = 0; i < size; i++)
 	{
@@ -61,7 +62,7 @@ void Vectors:: PrintVector() const
 	cout << endl << endl;
 }
 
-Vectors& Vectors:: operator = (const Vectors& v)
+Vectors Vectors:: operator = (const Vectors& v)
 {
 	if (this == (&v))
 	{
