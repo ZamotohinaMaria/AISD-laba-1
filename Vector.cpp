@@ -8,7 +8,7 @@ double Vectors:: MIN_D = 0.00000001;
 
 Vectors::Vectors(unsigned size) : size(size)
 {
-	cout << "create vector" << endl;
+	//cout << "create vector" << endl;
 	vector = new double[size];
 	for (int i = 0; i < size; i++)
 	{
@@ -16,15 +16,15 @@ Vectors::Vectors(unsigned size) : size(size)
 	}
 }
 
-Vectors::Vectors(const Vectors& v)
-{
-	size = v.size;
-	vector = new double[size];
-	for (int i = 0; i < size; i++)
-	{
-		vector[i] = v.vector[i];
-	}
-}
+//Vectors::Vectors(const Vectors& v)
+//{
+//	size = v.size;
+//	vector = new double[size];
+//	for (int i = 0; i < size; i++)
+//	{
+//		vector[i] = v.vector[i];
+//	}
+//}
 
 Vectors::~Vectors()
 {
@@ -103,12 +103,11 @@ Vectors Vectors:: operator + (const Vectors& v)
 	{
 		throw "sizes of vectors are different";
 	}
-	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		res.vector[i] = vector[i] + v.vector[i];
+		vector[i] = vector[i] + v.vector[i];
 	}
-	return res;
+	return *this;
 }
 
 Vectors Vectors:: operator - (const Vectors& v)
@@ -117,14 +116,13 @@ Vectors Vectors:: operator - (const Vectors& v)
 	{
 		throw "sizes of vectors are different";
 	}
-	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		res.vector[i] = vector[i] - v.vector[i];
+		vector[i] = vector[i] - v.vector[i];
 	}
-	return res;
+	return *this;
 }
-
+//скалярное произведение векторов
 double Vectors:: operator * (const Vectors& v)
 {
 	if (size != v.size)
@@ -141,12 +139,20 @@ double Vectors:: operator * (const Vectors& v)
 
 Vectors Vectors:: operator * (const int& c)
 {
-	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		res.vector[i] = vector[i] * c;
+		vector[i] = vector[i] * c;
 	}
-	return res;
+	return *this;
+}
+
+Vectors Vectors:: operator * (const double& c)
+{
+	for (int i = 0; i < size; i++)
+	{
+		vector[i] = vector[i] * c;
+	}
+	return *this;
 }
 
 Vectors Vectors:: operator / (const int& c)
@@ -155,12 +161,11 @@ Vectors Vectors:: operator / (const int& c)
 	{
 		throw "c can not be a 0";
 	}
-	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		res.vector[i] = vector[i] / c;
+		vector[i] = vector[i] / c;
 	}
-	return res;
+	return *this;
 }
 
 bool Vectors:: operator == (const Vectors& v) const

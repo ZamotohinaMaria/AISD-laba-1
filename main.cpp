@@ -13,7 +13,7 @@ using namespace std;
 
 std::ostream& operator<< (std::ostream& out, const Vectors& v)
 {
-	out << "Vector:";
+	out << "Vector: ";
 	for (int i = 0; i < v.size; i++)
 	{
 		out << v.vector[i] << " ";
@@ -36,16 +36,20 @@ int main()
 	Vectors a, b, c;
 	a.SetVector();
 	b.SetVector();
-	cout << a;
+	
+	cout << "vector a: ";
+	a.PrintVector();
+	//cout << a;
 	try
 	{
 		// c=1/2(a+b)
-		c = (a.operator+(b));
-		c.PrintVector();
-		//c = (a.operator+(b)).operator*(0.5);
-		//c.operator=((a.operator+(b)).operator*(0.5));
+		//c = (a.operator+(b));
 		//c.PrintVector();
-		//cout << c << endl;
+		c = (a.operator+(b)).operator*(0.5);
+		//c.operator=((a.operator+(b)).operator*(0.5));
+		c.PrintVector();
+		cout << "vector c:";
+		cout << c << endl;
 	}
 	catch (const char* exp)
 	{
