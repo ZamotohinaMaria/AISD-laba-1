@@ -21,7 +21,8 @@ std::ostream& operator<< (std::ostream& out, const Vectors& v)
 	return out;
 }
 
-Vectors operator * (const int& c, const Vectors& v)
+template <class T>
+Vectors operator * (const T& c, const Vectors& v)
 {
 	Vectors res(v.GetSize());
 	for (int i = 0; i < v.GetSize(); i++)
@@ -37,23 +38,20 @@ int main()
 	a.SetVector();
 	b.SetVector();
 	
-	cout << "vector a: ";
-	a.PrintVector();
-	//cout << a;
 	try
 	{
-		// c=1/2(a+b)
-		//c = (a.operator+(b));
-		//c.PrintVector();
-		c = (a.operator+(b)).operator*(0.5);
-		//c.operator=((a.operator+(b)).operator*(0.5));
+		c = (a+b) * 0.5;
 		c.PrintVector();
+		cout << "vector a:";
+		cout << a << endl;
+		cout << "vector b:";
+		cout << b << endl;
 		cout << "vector c:";
 		cout << c << endl;
 	}
 	catch (const char* exp)
 	{
-		cout << exp << endl;
+		cout << endl<< exp << endl;
 	}
 	return 0;
 }
