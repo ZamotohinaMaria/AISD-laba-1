@@ -6,25 +6,30 @@ using namespace std;
 
 double Vectors:: MIN_D = 0.00000001;
 
-Vectors::Vectors(unsigned size) : size(size)
+Vectors::Vectors(unsigned size ) : size(size)
 {
 	//cout << "create vector" << endl;
-	vector = new double[size];
-	for (int i = 0; i < size; i++)
+	if (size == 0)
+		vector = NULL;
+	else
 	{
-		vector[i] = 0;
+		vector = new double[size];
+		for (int i = 0; i < size; i++)
+		{
+			vector[i] = 0;
+		}
 	}
 }
 
-//Vectors::Vectors(const Vectors& v)
-//{
-//	size = v.size;
-//	vector = new double[size];
-//	for (int i = 0; i < size; i++)
-//	{
-//		vector[i] = v.vector[i];
-//	}
-//}
+Vectors::Vectors(const Vectors& v)
+{
+	size = v.size;
+	vector = new double[size];
+	for (int i = 0; i < size; i++)
+	{
+		vector[i] = v.vector[i];
+	}
+}
 
 Vectors::~Vectors()
 {
@@ -43,6 +48,9 @@ void Vectors::SetVector()
 	cin >> x;
 	size = x;
 	cout << "Input vector values" << endl;
+	if (vector != NULL)
+		delete[] vector;
+	vector = new double[size];
 	for (int i = 0; i < size; i++)
 	{
 		cin >> x;
@@ -62,7 +70,7 @@ void Vectors:: PrintVector() const
 	cout << endl << endl;
 }
 
-Vectors Vectors:: operator = (const Vectors& v)
+Vectors Vectors:: operator =(const Vectors& v)
 {
 	if (this == (&v))
 	{
@@ -70,7 +78,8 @@ Vectors Vectors:: operator = (const Vectors& v)
 	}
 	if (size < v.size)
 	{
-		delete[] vector;
+		if (vector != NULL)
+			delete[] vector;
 		vector = NULL;
 		vector = new double[v.size];
 	}
@@ -103,11 +112,12 @@ Vectors Vectors:: operator + (const Vectors& v)
 	{
 		throw "sizes of vectors are different";
 	}
+	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		vector[i] = vector[i] + v.vector[i];
+		res.vector[i] = vector[i] + v.vector[i];
 	}
-	return *this;
+	return res;
 }
 
 Vectors Vectors:: operator - (const Vectors& v)
@@ -116,11 +126,12 @@ Vectors Vectors:: operator - (const Vectors& v)
 	{
 		throw "sizes of vectors are different";
 	}
+	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		vector[i] = vector[i] - v.vector[i];
+		res.vector[i] = vector[i] - v.vector[i];
 	}
-	return *this;
+	return res;
 }
 //скалярное произведение векторов
 double Vectors:: operator * (const Vectors& v)
@@ -139,20 +150,22 @@ double Vectors:: operator * (const Vectors& v)
 
 Vectors Vectors:: operator * (const int& c)
 {
+	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		vector[i] = vector[i] * c;
+		res.vector[i] = vector[i] * c;
 	}
-	return *this;
+	return res;
 }
 
 Vectors Vectors:: operator * (const double& c)
 {
+	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		vector[i] = vector[i] * c;
+		res.vector[i] = vector[i] * c;
 	}
-	return *this;
+	return res;
 }
 
 Vectors Vectors:: operator / (const int& c)
@@ -161,11 +174,12 @@ Vectors Vectors:: operator / (const int& c)
 	{
 		throw "c can not be a 0";
 	}
+	Vectors res(size);
 	for (int i = 0; i < size; i++)
 	{
-		vector[i] = vector[i] / c;
+		res.vector[i] = vector[i] / c;
 	}
-	return *this;
+	return res;
 }
 
 bool Vectors:: operator == (const Vectors& v) const
