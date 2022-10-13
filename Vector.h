@@ -8,7 +8,7 @@ private:
 	static double MIN_D;
 public:
 	Vectors(unsigned size = 0);
-	//Vectors(const Vectors& v);
+	Vectors(const Vectors& v);
 	~Vectors();
 	unsigned GetSize() const;
 	void SetVector();
