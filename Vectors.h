@@ -18,7 +18,7 @@ public:
 	Vectors operator + (const Vectors& v);
 	Vectors operator - (const Vectors& v);
 	double operator * (const Vectors& v);
-	Vectors operator * (const int& c); //РѕР±СЃРїРµС‡РёС‚СЊ РєРѕРјРјСѓС‚Р°С‚РёРІРЅРѕСЃС‚СЊ
+	Vectors operator * (const int& c); //обспечить коммутативность
 	Vectors operator * (const double& c); 
 	Vectors operator / (const int& c);
 	bool operator == (const Vectors& v) const;

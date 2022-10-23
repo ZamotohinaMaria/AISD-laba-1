@@ -133,7 +133,7 @@ Vectors Vectors:: operator - (const Vectors& v)
 	}
 	return res;
 }
-//ÑĞºĞ°Ğ»ÑÑ€Ğ½Ğ¾Ğµ Ğ¿Ñ€Ğ¾Ğ¸Ğ·Ğ²ĞµĞ´ĞµĞ½Ğ¸Ğµ Ğ²ĞµĞºÑ‚Ğ¾Ñ€Ğ¾Ğ²
+//ñêàëÿğíîå ïğîèçâåäåíèå âåêòîğîâ
 double Vectors:: operator * (const Vectors& v)
 {
 	if (size != v.size)
@@ -201,7 +201,7 @@ bool Vectors:: operator != (const Vectors& v) const
 {
 	if (size != v.size)
 	{
-		return 0;
+		return 1;
 	}
 	else
 	{
@@ -209,7 +209,7 @@ bool Vectors:: operator != (const Vectors& v) const
 		{
 			if (abs(v.vector[i] - vector[i]) > MIN_D)
 			{
-				return 0;
+				return 1;
 			}
 		}
 	}
